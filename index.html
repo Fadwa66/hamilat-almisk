@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>حاملات المسك — سجل خاتمات القرآن الكريم</title>
+    <meta name="description" content="سجل يوثّق خاتمات القرآن الكريم حفظًا ومراجعة لطالبات المعلمة عايشة كادي محمد، مع إحصاءات وبحث وترتيب." />
+    <meta property="og:title" content="حاملات المسك — سجل خاتمات القرآن الكريم" />
+    <meta property="og:description" content="توثيقٌ لإنجاز خاتمات القرآن الكريم، وسجلٌ يحفظ أثر كل ختمة." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="header-container">
+        <div class="brand">
+            <div class="brand-icon" aria-hidden="true"></div>
+            <div>
+                <h1>حاملات المسك</h1>
+                <p>سجل خاتمات المعلمة عايشة كادي محمد</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <button id="loginButton" class="btn btn-outline" type="button">
+                <i class="fa-solid fa-shield-halved"></i>
+                تسجيل دخول
+            </button>
+
+            <button id="logoutButton" class="btn btn-outline" type="button" style="display:none">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                تسجيل خروج
+            </button>
+
+            <button id="generatePasswordButton" class="btn btn-outline" type="button" style="display:none">
+                <i class="fa-solid fa-key"></i>
+                توليد كلمة مؤقتة
+            </button>
+
+            <button id="addButton" class="btn btn-primary" type="button">
+                <i class="fa-solid fa-plus"></i>
+                إضافة خاتمة جديدة
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="main-container">
+
+    <section class="hero">
+        <div class="hero-pattern"></div>
+
+        <div class="hero-content">
+            <span class="hero-badge">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</span>
+            <h2>سجل يُخلّد إتمام كتاب الله</h2>
+            <p>توثيقٌ لإنجاز خاتمات القرآن الكريم، وسجلٌ يحفظ أثر كل ختمة.</p>
+        </div>
+
+        <div class="statistics">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div class="stat-info">
+                    <span>خاتمات الحفظ</span>
+                    <strong id="memorizationCount">0</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <div class="stat-info">
+                    <span>خاتمات المراجعة</span>
+                    <strong id="reviewCount">0</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEARCH ================= -->
+    <section class="search-section">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="ابحثي باسم الطالبة..." />
+        </div>
+
+        <div class="sort-box">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+            <select id="sortSelect">
+                <option value="newest">الأحدث تاريخًا</option>
+                <option value="oldest">الأقدم تاريخًا</option>
+                <option value="name">الاسم</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- ================= TABLE 1 ================= -->
+    <section class="table-section">
+        <div class="table-header">
+            <div class="section-title">
+                <div class="section-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div>
+                    <h3>خاتمات الحفظ</h3>
+                    <p>الطالبات اللاتي أتممن الختمة حفظًا</p>
+                </div>
+            </div>
+            <span class="count-badge">الإجمالي: <span id="memorizationTableCount">0</span></span>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الطالبة</th>
+                        <th>الجنسية</th>
+                        <th>تاريخ الختمة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="memorizationTable"></tbody>
+            </table>
+
+            <div class="empty-state" id="memorizationEmpty">
+                <i class="fa-regular fa-folder-open"></i>
+                <p>لا توجد خاتمات حفظ مسجلة حاليًا.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TABLE 2 ================= -->
+    <section class="table-section">
+        <div class="table-header">
+            <div class="section-title">
+                <div class="section-icon review-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <div>
+                    <h3>خاتمات المراجعة</h3>
+                    <p>الطالبات اللاتي أتممن الختمة مراجعة</p>
+                </div>
+            </div>
+            <span class="count-badge">الإجمالي: <span id="reviewTableCount">0</span></span>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الطالبة</th>
+                        <th>الجنسية</th>
+                        <th>تاريخ الختمة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="reviewTable"></tbody>
+            </table>
+
+            <div class="empty-state" id="reviewEmpty">
+                <i class="fa-regular fa-folder-open"></i>
+                <p>لا توجد خاتمات مراجعة مسجلة حاليًا.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>
+        حاملات المسك — سجل خاتمات القرآن الكريم
+        <br />
+        fadwaffe@gmail.com
+    </p>
+</footer>
+
+<!-- ================= MODAL ================= -->
+<div class="modal-overlay" id="modal">
+    <div class="modal">
+        <button class="close-modal" type="button" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="modal-header">
+            <div class="modal-icon"><i class="fa-solid fa-user-plus"></i></div>
+            <div>
+                <h2 id="modalTitle">إضافة خاتمة جديدة</h2>
+                <p>أضيفي بيانات الطالبة والختمة</p>
+            </div>
+        </div>
+
+        <form id="studentForm">
+            <input type="hidden" id="studentId" />
+
+            <div class="form-group">
+                <label for="studentName">اسم الطالبة</label>
+                <input type="text" id="studentName" placeholder="أدخلي اسم الطالبة" required />
+            </div>
+
+            <div class="form-group">
+                <label for="nationality">الجنسية</label>
+                <input type="text" id="nationality" placeholder="أدخلي الجنسية" required />
+            </div>
+
+            <div class="form-group">
+                <label for="completionDate">تاريخ الختمة</label>
+                <input type="date" id="completionDate" />
+                <small>يمكن ترك التاريخ فارغًا.</small>
+            </div>
+
+            <div class="form-group">
+                <label>نوع الختمة</label>
+
+                <div class="type-options">
+                    <label class="type-option">
+                        <input type="radio" name="completionType" value="memorization" checked />
+                        <div class="type-card">
+                            <i class="fa-solid fa-book-open"></i>
+                            <div>
+                                <strong>حفظ</strong>
+                                <small>ختمة عن طريق الحفظ</small>
+                            </div>
+                        </div>
+                    </label>
+
+                    <label class="type-option">
+                        <input type="radio" name="completionType" value="review" />
+                        <div class="type-card">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <div>
+                                <strong>مراجعة</strong>
+                                <small>ختمة عن طريق المراجعة</small>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-cancel" id="cancelModal">إلغاء</button>
+                <button type="submit" class="btn btn-primary" id="saveButton">
+                    <i class="fa-solid fa-check"></i>
+                    حفظ البيانات
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ================= LOGIN ================= -->
+<div class="login-overlay" id="loginModal">
+    <div class="login-box">
+        <button class="close-modal" type="button" id="closeLoginModal" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="login-header">
+            <div class="login-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+                <h2>تسجيل الدخول</h2>
+                <p>دخول المعلمة لإدارة السجل</p>
+            </div>
+        </div>
+
+        <form id="loginForm">
+            <div class="login-field">
+                <label for="loginEmail">البريد الإلكتروني</label>
+                <input type="email" id="loginEmail" dir="ltr" placeholder="أدخلي البريد الإلكتروني" required />
+            </div>
+
+            <div class="login-field">
+                <label for="loginPassword">كلمة المرور</label>
+                <input type="password" id="loginPassword" placeholder="أدخلي كلمة المرور" required />
+            </div>
+
+            <button type="button" class="forgot-password" id="forgotPassword">نسيت كلمة المرور؟</button>
+
+            <p class="login-error" id="loginError" role="alert"></p>
+            <div class="login-actions">
+                <button type="button" class="btn btn-cancel" id="cancelLogin">إلغاء</button>
+                <button type="submit" class="btn btn-primary" id="submitLogin">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    دخول
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ================= NOTIFICATIONS ================= -->
+<div class="login-overlay" id="noticeModal">
+    <div class="login-box notice-box">
+        <button class="close-modal" type="button" id="closeNotice" aria-label="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="login-header">
+            <div class="login-icon" id="noticeIcon"><i class="fa-solid fa-circle-info"></i></div>
+            <div>
+                <h2 id="noticeTitle">تنبيه</h2>
+                <p id="noticeSubtitle">حاملات المسك</p>
+            </div>
+        </div>
+
+        <p class="notice-message" id="noticeMessage"></p>
+        <input class="notice-input" id="noticeInput" type="password" placeholder="أدخلي كلمة المرور المؤقتة" />
+
+        <div class="login-actions">
+            <button type="button" class="btn btn-cancel" id="noticeCancel">إلغاء</button>
+            <button type="button" class="btn btn-primary" id="noticeConfirm">حسنًا</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
