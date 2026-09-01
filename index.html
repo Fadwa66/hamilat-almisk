@@ -330,6 +330,165 @@
     </div>
 </div>
 
+<!-- STUDENT DETAILS / RECOMMENDATIONS / CONGRATULATIONS -->
+<div class="login-overlay" id="studentDetailsModal">
+    <div class="login-box student-details-box">
+
+        <button
+            class="close-modal"
+            type="button"
+            id="closeStudentDetails"
+            aria-label="إغلاق"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="login-header">
+            <div class="login-icon">
+                <i class="fa-solid fa-award"></i>
+            </div>
+
+            <div>
+                <h2 id="studentDetailsName">اسم الطالبة</h2>
+                <p id="studentDetailsSubtitle">حاملات المسك</p>
+            </div>
+        </div>
+
+        <!-- RECOMMENDATIONS -->
+        <div class="details-section" id="recommendationsSection">
+            <div class="details-section-header">
+                <div class="details-section-icon">
+                    <i class="fa-solid fa-quote-right"></i>
+                </div>
+
+                <div>
+                    <h3>التوصيات</h3>
+                    <p>كلمات من المعلمات والموجهات</p>
+                </div>
+            </div>
+
+            <div id="recommendationsList"></div>
+        </div>
+
+        <!-- CONGRATULATIONS -->
+        <div class="details-section" id="congratulationsSection">
+            <div class="details-section-header">
+                <div class="details-section-icon">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+
+                <div>
+                    <h3>التهاني والتبريكات</h3>
+                    <p>كلمات الأهل والصديقات والأحبة</p>
+                </div>
+            </div>
+
+            <div id="congratulationsList"></div>
+        </div>
+
+        <!-- ADD RECOMMENDATION -->
+        <div id="addRecommendationSection" class="details-form-section">
+            <div class="details-section-header">
+                <div class="details-section-icon">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+
+                <div>
+                    <h3>إضافة توصية</h3>
+                    <p>يمكن إضافة 3 توصيات كحد أقصى</p>
+                </div>
+            </div>
+
+            <form id="recommendationForm">
+
+                <div class="form-group">
+                    <label for="recommendationName">
+                        اسم المعلمة أو الموجهة
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recommendationName"
+                        placeholder="أدخلي الاسم"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="recommendationText">
+                        نص التوصية
+                    </label>
+
+                    <textarea
+                        id="recommendationText"
+                        placeholder="اكتبي التوصية..."
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="saveRecommendationButton"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    إضافة التوصية
+                </button>
+            </form>
+        </div>
+
+        <!-- ADD CONGRATULATION -->
+        <div id="addCongratulationsSection" class="details-form-section">
+            <div class="details-section-header">
+                <div class="details-section-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div>
+                    <h3>إضافة تهنئة وتبريك</h3>
+                    <p>من الأهل أو الصديقات أو الأحبة</p>
+                </div>
+            </div>
+
+            <form id="congratulationForm">
+
+                <div class="form-group">
+                    <label for="congratulationName">
+                        اسم المهنئ
+                    </label>
+
+                    <input
+                        type="text"
+                        id="congratulationName"
+                        placeholder="أدخلي الاسم"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="congratulationText">
+                        نص التهنئة والتبريك
+                    </label>
+
+                    <textarea
+                        id="congratulationText"
+                        placeholder="اكتبي التهنئة والتبريك..."
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="saveCongratulationButton"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    إضافة التهنئة
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
 <!-- LOGIN -->
 <div class="login-overlay" id="loginModal">
     <div class="login-box">
@@ -416,6 +575,7 @@
 <!-- NOTIFICATIONS -->
 <div class="login-overlay" id="noticeModal">
     <div class="login-box notice-box">
+
         <button
             class="close-modal"
             type="button"
@@ -465,6 +625,7 @@
                 حسنًا
             </button>
         </div>
+
     </div>
 </div>
 
